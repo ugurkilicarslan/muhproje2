@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Mvc.Models.mvcPersonelModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<br/>
+
+<p>
+
+   <a href="@Url.Action("AddorEdit","Personel")" class="btn btn-default"> <i class="fa fa-plus" aria-hidden="true"></i> Yeni Kayıt</a>
+</p>
+<table class="table table-striped">
+    <thead class="table-heading">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.İsim)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Soyisim)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Meslek)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Yaş)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Maaş)
+            </th>
+            <th>Düzenleme işlemleri</th>
+        </tr>
+    </thead>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.İsim)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Soyisim)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Meslek)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Yaş)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Maaş)
+        </td>
+        <td>
+            <a href="@Url.Action("AddOrEdit", "Personel", new { id = item.Personelid})" class="btn btn-default"><i class="fa fa-pencil"></i>Düzenle</a>
+            <a onclick="Delete(@item.Personelid)" class="btn btn-default"><i class="fa fa-trash"></i>Sil</a>
+            
+        </td>
+    </tr>
+}
+
+</table>
+
+@section scripts{
+    <script>
+        $(function () {
+            var successMessage = '@TempData["SuccessMessage"]'
+            if (successMessage != '')
+                alertify.success(successMessage);
+        });
+
+
+        function Delete(id){
+            alertify.confirm('Bu kaydı silmek istediğinizden emin misiniz ?',function(){
+            window.location.href='@Url.Action("Delete","Personel")/'+id;
+            },null);
+        }
+    </script>
+    }

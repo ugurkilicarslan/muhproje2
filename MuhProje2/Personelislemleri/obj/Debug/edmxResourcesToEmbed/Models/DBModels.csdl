@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CRUDDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Personel">
+    <Key>
+      <PropertyRef Name="Personelid" />
+    </Key>
+    <Property Name="Personelid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="İsim" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Soyisim" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Meslek" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Yaş" Type="Int32" />
+    <Property Name="Maaş" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="DBModel" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Personel" EntityType="Self.Personel" />
+  </EntityContainer>
+</Schema>
